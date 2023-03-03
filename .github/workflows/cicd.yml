@@ -2,7 +2,7 @@ name: Тестирование и развертывание проекта
 
 on:
   push:
-    branches:[main]
+    branches: [main]
 
 jobs:
   tests:
