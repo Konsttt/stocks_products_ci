@@ -1,7 +1,12 @@
+from datetime import datetime
+
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
 from rest_framework.permissions import SAFE_METHODS
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
+
 
 from logistic.models import Product, Stock
 from logistic.serializers import ProductSerializer, StockSerializer, StockDetailSerializer
@@ -35,3 +40,7 @@ class StockViewSet(ModelViewSet):
             return StockSerializer  # depth=0. Для POST, PUT, PATCH
 
 
+class TestView(APIView):
+    def get(self, request):
+        t = datetime.now().strftime("%d.%m.%Y %H:%M:%S")
+        return Response(f'Московское время: {t}')
