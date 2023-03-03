@@ -24,7 +24,8 @@ class StockSerializer(serializers.ModelSerializer):
         fields = ['address', 'positions']
 
     # Добавление нового склада и новых позиций продуктов на этом складе.
-    # POST json запрос содержит address и список positions[{product, quantity, price},...,]
+    # POST json запрос содержит address и
+    # список positions[{product, quantity, price},...,]
     # если список позиций продуктов пустой, то создаётся только склад
     def create(self, validated_data):
         positions = validated_data.pop('positions')
@@ -58,8 +59,8 @@ class StockSerializer(serializers.ModelSerializer):
                 stock=stock, product=product, defaults={'price': position['price'], 'quantity': position['quantity']}
             )  # Метод update_or_create пытается извлечь объект из базы данных на основе заданного kwargs.
             # Если совпадение найдено, оно обновляет поля, переданные в словаре defaults.
-            '''Алгоритм update_or_create получается такой: в таблице StockProduct ищутся записи по id склада и 
-            id продукта (и склад и продукт должны в своих таблицах существовать, иначе это неверный запрос - 
+            '''Алгоритм update_or_create получается такой: в таблице StockProduct ищутся записи по id склада и
+            id продукта (и склад и продукт должны в своих таблицах существовать, иначе это неверный запрос -
             IntegrityError. Итак если и склад и продукт существуют в своих таблицах, но ни одной записи в промежуточной
             таблице нет - то создаётся новая запись. То что в defaults - обновляется всегда. Не было записи - дефаултс
             задаются указанные. Есть запись - дефаултс меняются на новые.)'''
