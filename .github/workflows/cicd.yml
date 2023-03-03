@@ -1,0 +1,11 @@
+name: Тестирование и развертывание проекта
+
+on:
+  push:
+    branches:[main]
+
+jobs:
+  tests:
+    runs-on:ubuntu-22.04
+    env:
+      SECRET_KEY: 
