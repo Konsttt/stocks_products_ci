@@ -43,4 +43,4 @@ class StockViewSet(ModelViewSet):
 class TestView(APIView):
     def get(self, request):
         t = datetime.now().strftime("%d.%m.%Y %H:%M:%S")
-        return Response(f'<h1> Московское время:  {t}</h1>')
+        return Response(f'МОСКОВСКОЕ ВРЕМЯ:  {t}')
